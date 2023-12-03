@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:simple_app/screen/recommendations.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
-//i would need to replace for api here
 }
 
-TextEditingController usernameController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
-
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,13 +42,18 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             _icon(),
             const SizedBox(height: 50),
-            _inputField("username", usernameController),
+            _inputField("Username", usernameController),
             const SizedBox(height: 20),
-            _inputField("password", passwordController, isPassword: true),
+            _inputField("Password", passwordController, isPassword: true),
             const SizedBox(height: 50),
             _loginBtn(),
-            const SizedBox(height: 20),
-            _extraText(),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Back'),
+            ),
           ],
         ),
       ),
@@ -92,6 +97,11 @@ class _LoginPageState extends State<LoginPage> {
             " Username: usernameController.text" + usernameController.text);
         debugPrint(
             " Password: passwordController.text" + passwordController.text);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const RecommendationsScreen()),
+        );
       },
       style: ElevatedButton.styleFrom(
         shape: const StadiumBorder(),
@@ -106,14 +116,6 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(fontSize: 20),
         ),
       ),
-    );
-  }
-
-  Widget _extraText() {
-    return const Text(
-      "I forgot my password",
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 16, color: Colors.white),
     );
   }
 }
