@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
+
 import 'package:simple_app/screen/recommendations.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -94,9 +96,9 @@ class _LoginPageState extends State<LoginPage> {
     return ElevatedButton(
       onPressed: () {
         debugPrint(
-            " Username: usernameController.text" + usernameController.text);
+            " Username: usernameController.text${usernameController.text}");
         debugPrint(
-            " Password: passwordController.text" + passwordController.text);
+            " Password: passwordController.text${passwordController.text}");
         Navigator.push(
           context,
           MaterialPageRoute(

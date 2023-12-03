@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'package:simple_app/screen/nutritional_facts.dart';
 
 class RecommendationsScreen extends StatelessWidget {
-  const RecommendationsScreen({Key? key}) : super(key: key);
+  const RecommendationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +13,7 @@ class RecommendationsScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () {
-              Navigator.push(
-                MaterialPageRoute(
-                        builder: (context) =>
-                            RecipesDetailsPage(searchQuery: 'search'))
-                    as BuildContext,
-              );
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -27,9 +21,9 @@ class RecommendationsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            _recommendationRow(context, 'Recommendation 1'),
-            _recommendationRow(context, 'Recommendation 2'),
-            _recommendationRow(context, 'Recommendation 3'),
+            _recommendationRow('Recommendation 1'),
+            _recommendationRow('Recommendation 2'),
+            _recommendationRow('Recommendation 3'),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -46,8 +40,6 @@ class RecommendationsScreen extends StatelessWidget {
     );
   }
 
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
   Widget _recommendationRow(String title) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -55,23 +47,11 @@ class RecommendationsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            onPressed: () {
-              navigatorKey.currentState!.push(
-                MaterialPageRoute(
-                  builder: (context) => RecipesDetailsPage(searchQuery: title),
-                ),
-              );
-            },
+            onPressed: () {},
             child: Text(title, style: const TextStyle(fontSize: 20)),
           ),
           ElevatedButton(
-            onPressed: () {
-              navigatorKey.currentState!.push(
-                MaterialPageRoute(
-                  builder: (context) => RecipesDetailsPage(searchQuery: title),
-                ),
-              );
-            },
+            onPressed: () {},
             child: const Text('View Recipe'),
           ),
         ],
@@ -80,16 +60,58 @@ class RecommendationsScreen extends StatelessWidget {
   }
 }
 
-class RecipesDetailsPage {
-  const RecipesDetailsPage({required this.searchQuery});
-  final String searchQuery;
-  @override
-  _RecipesDetailsPageState createState() => _RecipesDetailsPageState();
-  static const routeName = '/recipes_details_page';
-  static const routeName2 = '/nutritional_facts_page';
-  static const routeName3 = '/nutritional_facts_page2';
-  static const routeName4 = '/nutritional_facts_page3';
-  static const routeName5 = '/nutritional_facts_page4';
+class RecipesDetailsPage extends StatelessWidget {
+  const RecipesDetailsPage({super.key, required this.searchQuery});
 
-  _RecipesDetailsPageState() {}
+  final String searchQuery;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(searchQuery),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [],
+        ),
+      ),
+    );
+  }
+}
+
+Widget build(BuildContext context) {
+  var title = title2;
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        ElevatedButton(
+          onPressed: () {},
+          child: null,
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: const Text('View Recipe'),
+        ),
+      ],
+    ),
+  );
+}
+
+mixin title2 {}
+
+class _recipeRow {
+  _recipeRow(param0);
+
+  static fromMap(Map<String, dynamic> decode) {}
+}
+
+Map<String, dynamic> toMap() {
+  var title;
+  return <String, dynamic>{
+    'title': title,
+  };
 }
